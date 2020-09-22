@@ -9,19 +9,23 @@ export default function Deputados() {
 
     useEffect(() =>{
         api.get('deputados')
-            .then(response => {             
-           
-            setDepList(response.data.dados)
-            
-            
+            .then(response => { 
+                setDepList(response.data.dados)
             }) 
     },[])
-   
-    console.log(depList)
-    
-    return (
+
+    return(
         <div>
-            <h1>Lista de Deputados: <p> text </p> </h1>
+            <h1>Lista de Deputados: </h1>
+            <ol>
+                {depList.map(deputado => ( 
+                    <li key={deputado.id}> 
+                        <p>{deputado.nome} </p>
+                        
+                    </li>
+                ))}
+                
+            </ol>    
         </div>
     )
 }
