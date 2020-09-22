@@ -5,21 +5,23 @@ import api from '../../services/api'
 
 export default function Deputados() {
 
-    const [DeputadoList, setDeputadoList] = useState([])
+    const [depList, setDepList] = useState([])
 
     useEffect(() =>{
-        api.get('deputados').then(response => { 
+        api.get('deputados')
+            .then(response => {             
+           
+            setDepList(response.data.dados)
             
             
-            
-        }) 
+            }) 
     },[])
    
-
+    console.log(depList)
     
     return (
         <div>
-            <h1>Lista de Deputados: <p>{DeputadoList}</p> </h1>
+            <h1>Lista de Deputados: <p> text </p> </h1>
         </div>
     )
 }
