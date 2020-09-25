@@ -5,27 +5,35 @@ import api from '../../services/api'
 
 export default function Deputados() {
 
-    const [depList, setDepList] = useState([])
+    const [deputadoList, setDeputadoList] = useState([])
+    
+    useEffect( async () => { 
+        
+        const response = await api.get()
+        const dataList = response.data.dados
+        setDeputadoList(dataList)
 
-    useEffect(() =>{
-        api.get('deputados')
-            .then(response => { 
-                setDepList(response.data.dados)
-            }) 
     },[])
 
+    
+  
+
     return(
-        <div>
-            <h1>Lista de Deputados: </h1>
-            <ol>
-                {depList.map(deputado => ( 
-                    <li key={deputado.id}> 
-                        <p>{deputado.nome} </p>
-                        
-                    </li>
+        <div>               
+            {deputadoList.map(deputado =>(   
+
+                <div key={deputado.id}> 
+
+                    <h1> {deputado.nome}</h1>
+
+                    <p> Detalhes: </p>  
+
+                </div>
+                
                 ))}
                 
-            </ol>    
+
+
         </div>
     )
 }
